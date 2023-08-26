@@ -3,8 +3,8 @@ all: make cli
 .PHONY: cli
 cli:
 	(mkdir /opt/stingless)
-	(cp ./bcc /opt/stingless/bcc)
-	(export PATH="$PATH:/opt/stingless/bcc") 
+	(cp -rf ./bcc /opt/stingless/bcc)
+	(export PATH=$PATH:/opt/stingless/bcc) 	
 	(go build -o /usr/bin/stingless)
 .PHONY: install
 install:

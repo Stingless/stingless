@@ -2,6 +2,7 @@ FROM golang
 
 ARG KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 ARG KERNEL_REF=master
+RUN date
 RUN apt-get update && \
     apt-get install -y build-essential git cmake \
                        zlib1g-dev libevent-dev \
@@ -32,7 +33,14 @@ RUN cd libbpf-bootstrap/bpftool/src && \
 RUN git clone --depth 1 git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git && \
     cp linux/include/uapi/linux/bpf* /usr/include/linux/
 
-RUN git clone https://github.com/rahulk789/ebpf_tools && \
-    cd ebpf_tools && \
-    cp /src/libbpf-bootstrap/vmlinux/vmlinux.h /src/ebpf_tools/vmlinux.h && \
-    make 
+RUN mkdir /root/.ssh/ && \
+    touch /root/.ssh/known_hosts && \
+    ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+ADD id_rsa /root/.ssh/id_rsa
+
+RUN git clone git@github.com:Stingless/stingless.git && \
+    cd stingless && \
+    make cli
+ENV PATH="$PATH:/opt/stingless/bcc"
+RUN stingless help
