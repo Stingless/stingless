@@ -1,6 +1,6 @@
 # stingless
-To build the image
-```sudo docker build . -t stingless-beta```
+To build the image \
+```sudo docker build . -t stingless-beta``` \
 To run it
 ```
 sudo docker run -it --rm   \
@@ -8,6 +8,7 @@ sudo docker run -it --rm   \
 -v /lib/modules:/lib/modules:ro   \
 -v /usr/src:/usr/src:ro   \
 -v /etc/localtime:/etc/localtime:ro \
+--workdir /src/stingless/bcc/tools \
 stingless-beta
 ```
 
