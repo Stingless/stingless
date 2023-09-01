@@ -22,8 +22,8 @@ RUN git clone https://github.com/libbpf/libbpf-bootstrap.git && \
     git submodule update --init --recursive
 
 RUN cd libbpf-bootstrap/libbpf/src && \
-    make BUILD_STATIC_ONLY=y && \
-    make install BUILD_STATIC_ONLY=y LIBDIR=/usr/lib/x86_64-linux-gnu/
+    make BUILD_STATIC_ONLY=y CONFIG_IKHEADERS=m&& \
+    make install BUILD_STATIC_ONLY=y CONFIG_IKHEADERS=m LIBDIR=/usr/lib/x86_64-linux-gnu/
 
 RUN cd libbpf-bootstrap/bpftool/src && \
     make && \
@@ -42,5 +42,12 @@ ADD id_rsa /root/.ssh/id_rsa
 RUN git clone git@github.com:Stingless/stingless.git && \
     cd stingless && \
     make cli
-ENV PATH="$PATH:/opt/stingless/bcc"
-RUN stingless help
+ENV PATH="$PATH:/opt/stingless/bcc/tools"
+RUN apt-get update -y && \
+    apt-get install -y python python3  python3-bpfcc python3-pip binutils libelf1 kmod  && \
+    apt-get -y install python-pip && \
+    pip install dnslib cachetools ; \
+    pip3 install dnslib cachetools
+RUN cd /opt/stingless/bcc/tools && \
+    su && \
+    stingless run -p execsnoop.py
