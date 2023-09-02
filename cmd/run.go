@@ -26,11 +26,12 @@ to quickly create a Cobra application.`,
 func run(ccmd *cobra.Command, args []string) {
     program, _ := ccmd.Flags().GetString("program")
     //argss, _ := ccmd.Flags().GetString("args")
-    command := exec.Command("sudo","python3",program)
+    pathing := "/opt/stingless/bcc/tools/"+program
+    command := exec.Command(pathing)
     command.Stdout = os.Stdout
     err := command.Run()
     if err != nil {
-        log.Println("Enter valid program type and run with sudo")
+        log.Println(err)
     }
 }
 func init() {
