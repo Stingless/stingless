@@ -27,7 +27,7 @@ func run(ccmd *cobra.Command, args []string) {
     program, _ := ccmd.Flags().GetString("program")
     //argss, _ := ccmd.Flags().GetString("args")
     pathing := "/opt/stingless/bcc/tools/"+program
-    command := exec.Command(pathing)
+    command := exec.Command("python3",pathing)
     command.Stdout = os.Stdout
     err := command.Run()
     if err != nil {

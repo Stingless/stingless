@@ -10,7 +10,8 @@ RUN apt-get update && \
                        clang libc6-dev-i386
 
 RUN mkdir /src && \
-    git init
+    git init && \
+    ls
 WORKDIR /src
 
 # Link asm/byteorder.h into eBPF
@@ -42,12 +43,8 @@ ADD id_rsa /root/.ssh/id_rsa
 RUN git clone git@github.com:Stingless/stingless.git && \
     cd stingless && \
     make cli
-ENV PATH="$PATH:/opt/stingless/bcc/tools"
 RUN apt-get update -y && \
     apt-get install -y python python3  python3-bpfcc python3-pip binutils libelf1 kmod  && \
     apt-get -y install python-pip && \
     pip install dnslib cachetools ; \
     pip3 install dnslib cachetools
-RUN cd /opt/stingless/bcc/tools && \
-    su && \
-    stingless run -p execsnoop.py
