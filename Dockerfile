@@ -39,7 +39,7 @@ RUN mkdir /root/.ssh/ && \
     ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 ADD id_rsa /root/.ssh/id_rsa
-
+RUN chmod 600 /root/.ssh/id_rsa
 RUN git clone git@github.com:Stingless/stingless.git && \
     cd stingless && \
     make cli
