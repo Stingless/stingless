@@ -1,0 +1,229 @@
+version: "3"
+
+networks:
+  loki:
+
+services:
+ stingless-tcptop:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcptop.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-tcptracer:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcptracer.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-tcpsynbl:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcpsynbl.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-subnet:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcpsubnet.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-tcostates:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcpstates.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-tcprtt:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcprtt.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-tcpretrans:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcpretrans.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-tcpdrop:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcpdrop.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-tcpconnlat:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcpconnlat.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+ stingless-tcpaccept:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcpaccept.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ stingless-tcpconnect:
+    image: stingless
+    networks:
+      - loki
+    privileged: true
+    working_dir: /opt/stingless/bcc/tools
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: 
+      ["stingless","run","-p","tcpconnect.py"]
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
+
+ loki:
+    image: grafana/loki:2.8.0
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+ 
+ grafana:
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          access: proxy 
+          orgId: 1
+          url: http://loki:3100
+          basicAuth: false
+          isDefault: true
+          version: 1
+          editable: false
+        EOF
+        /run.sh
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - loki

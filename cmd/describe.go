@@ -12,8 +12,8 @@ import (
 )
 
 // runCmd represents the run command
-var runCmd = &cobra.Command{
-	Use:   "run",
+var describeCmd = &cobra.Command{
+	Use:   "describe",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -21,13 +21,13 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: run,
+	Run: describe,
 }
-func run(ccmd *cobra.Command, args []string) {
+func describe(ccmd *cobra.Command, args []string) {
     program, _ := ccmd.Flags().GetString("program")
     //argss, _ := ccmd.Flags().GetString("args")
-    pathing := "/opt/stingless/bcc/tools/"+program+".py"
-    command := exec.Command("python3",pathing)
+    pathing := "/opt/stingless/bcc/tools/"+program+"_example.txt"
+    command := exec.Command("cat",pathing)
     command.Stdout = os.Stdout
     err := command.Run()
     if err != nil {
@@ -35,9 +35,8 @@ func run(ccmd *cobra.Command, args []string) {
     }
 }
 func init() {
-	rootCmd.AddCommand(runCmd)
-    runCmd.Flags().StringP("program", "p", "", "Select program to be run")
-    runCmd.Flags().StringP("args", "a", "", "Add arguments necessary for the given program")
+	rootCmd.AddCommand(describeCmd)
+    describeCmd.Flags().StringP("program", "p", "", "Select program to be described")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

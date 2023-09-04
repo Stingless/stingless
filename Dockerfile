@@ -48,3 +48,4 @@ RUN apt-get update -y && \
     apt-get -y install python-pip && \
     pip install dnslib cachetools ; \
     pip3 install dnslib cachetools
+CMD ["cat"]

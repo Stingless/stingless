@@ -4,16 +4,8 @@ networks:
   loki:
 
 services:
-  loki:
-    image: grafana/loki:2.8.0
-    ports:
-      - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - loki
-
-  stingless:
-    image: stingless-beta-v2
+ stingless-tcpconnect:
+    image: stingless
     networks:
       - loki
     privileged: true
@@ -23,13 +15,21 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","execsnoop.py"]
+      ["stingless","run","-p","tcpconnect.py"]
     logging:
       driver: loki
       options:
         loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
 
-  grafana:
+ loki:
+    image: grafana/loki:2.8.0
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+ 
+ grafana:
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
