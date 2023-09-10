@@ -14,13 +14,9 @@ import (
 // runCmd represents the run command
 var describeCmd = &cobra.Command{
 	Use:   "describe",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Describes the tool given as argument",
+	Long: `Explains in detail the pausible uses of the given tool with an example. 
+Illustrates various arguments which can be passed to the given binary.`,
 	Run: describe,
 }
 func describe(ccmd *cobra.Command, args []string) {

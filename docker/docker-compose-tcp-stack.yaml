@@ -15,7 +15,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcptop.py"]
+      ["stingless","run","-p","tcptop"]
     logging:
       driver: loki
       options:
@@ -32,7 +32,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcptracer.py"]
+      ["stingless","run","-p","tcptracer"]
     logging:
       driver: loki
       options:
@@ -49,7 +49,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcpsynbl.py"]
+      ["stingless","run","-p","tcpsynbl"]
     logging:
       driver: loki
       options:
@@ -66,13 +66,13 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcpsubnet.py"]
+      ["stingless","run","-p","tcpsubnet"]
     logging:
       driver: loki
       options:
         loki-url: "http://127.0.0.1:3100/loki/api/v1/push"
 
- stingless-tcostates:
+ stingless-tcpstates:
     image: stingless
     networks:
       - loki
@@ -83,7 +83,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcpstates.py"]
+      ["stingless","run","-p","tcpstates"]
     logging:
       driver: loki
       options:
@@ -100,7 +100,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcprtt.py"]
+      ["stingless","run","-p","tcprtt"]
     logging:
       driver: loki
       options:
@@ -117,7 +117,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcpretrans.py"]
+      ["stingless","run","-p","tcpretrans"]
     logging:
       driver: loki
       options:
@@ -134,7 +134,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcpdrop.py"]
+      ["stingless","run","-p","tcpdrop"]
     logging:
       driver: loki
       options:
@@ -151,7 +151,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcpconnlat.py"]
+      ["stingless","run","-p","tcpconnlat"]
     logging:
       driver: loki
       options:
@@ -167,7 +167,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcpaccept.py"]
+      ["stingless","run","-p","tcpaccept"]
     logging:
       driver: loki
       options:
@@ -184,7 +184,7 @@ services:
       - /usr/src:/usr/src:ro
       - /etc/localtime:/etc/localtime:ro
     command: 
-      ["stingless","run","-p","tcpconnect.py"]
+      ["stingless","run","-p","tcpconnect"]
     logging:
       driver: loki
       options:
