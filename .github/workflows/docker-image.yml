@@ -23,6 +23,6 @@ jobs:
     
     - name: Build and push the Docker image
       run: |
-            docker build . --file Dockerfile --tag rahulk789/stingless:latest
-           docker run rahulk789/stingless:latest
-           docker push rahulk789/stingless:latest
+        docker build . --file Dockerfile --tag rahulk789/stingless:latest
+        docker run rahulk789/stingless:latest
+        docker push rahulk789/stingless:latest
