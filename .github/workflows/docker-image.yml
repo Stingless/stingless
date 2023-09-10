@@ -22,6 +22,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Build and push the Docker image
-      run: docker build . --file Dockerfile --tag rahulk789/stingless:latest
+      run: |
+            docker build . --file Dockerfile --tag rahulk789/stingless:latest
            docker run rahulk789/stingless:latest
            docker push rahulk789/stingless:latest
