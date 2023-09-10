@@ -40,5 +40,5 @@ RUN git clone git@github.com:Stingless/stingless.git && \
     cd stingless && \
     make cli
 RUN apt-get update -y && \
-    apt-get install -y python python3  python3-bpfcc python3-pip binutils libelf1 kmod  
+    apt-get install -y python3  python3-bpfcc python3-pip binutils libelf1 kmod  
 CMD ["cat"]
